@@ -1,10 +1,10 @@
----
+﻿---
 title: Microservices Architecture
 description: Event-driven microservices implementation in KulturHub
 icon: material/function-variant
 ---
 
-# :material-function-variant: Microservices Architecture
+#  Microservices Architecture
 
 ## Overview
 
@@ -172,17 +172,17 @@ function getEmailTemplate(payload: EmailPayload): string {
       <div class="container">
         <div class="header">
           <h1>KulturHub</h1>
-        </div>
+        
         <div class="content">
           <h2>Hi ${payload.userName},</h2>
           <p>${getEmailMessage(payload)}</p>
           <p><strong>Event:</strong> ${payload.eventName}</p>
           <p><strong>Date:</strong> ${payload.eventDate}</p>
-        </div>
+        
         <div class="footer">
           <p>Thank you for using KulturHub!</p>
-        </div>
-      </div>
+        
+      
     </body>
     </html>
   `;
@@ -304,7 +304,7 @@ const storageCleanerFunction: AzureFunction = async function (
     
     let deletedCount = 0;
     const thirtyDaysAgo = new Date();
-    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    thirtyDaysAg✅setDate(thirtyDaysAg✅getDate() - 30);
     
     // List all blobs
     for await (const blob of containerClient.listBlobsFlat()) {
@@ -643,9 +643,8 @@ Azure Functions free tier includes:
 
 ---
 
-<div class="text-center" markdown>
 
-[:material-arrow-left: Monitoring](monitoring.md){ .md-button }
-[:material-arrow-right: Cost Optimization](optimization.md){ .md-button .md-button--primary }
 
-</div>
+[ Monitoring](monitoring.md)
+[ Cost Optimization](optimization.md)
+

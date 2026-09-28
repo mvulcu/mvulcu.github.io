@@ -1,0 +1,87 @@
+﻿---
+title: KulturHub Platform Overview
+description: Enterprise-grade event management platform with full DevOps lifecycle on Azure PaaS
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+# KulturHub — Cloud-Native Event Platform
+
+**Scalable and secure platform for cultural event management**  
+A comprehensive DevOps project showcasing modern cloud architecture, Bicep IaC, and observability.
+
+<CardGrid>
+  <Card title="Architecture & IaC" icon="rocket">
+    Production-ready cloud architecture on Azure PaaS with Bicep IaC and automated CI/CD.
+
+    [Explore Architecture &rarr;](architecture/)
+  </Card>
+  <Card title="Technical Documentation" icon="document">
+    Detailed specifications for networking, security, microservices, and monitoring.
+
+    [Browse Documentation &rarr;](#documentation)
+  </Card>
+  <Card title="Source Code" icon="github">
+    Full-stack codebase and DevOps automation workflows.
+
+    [Private Repository &rarr;](https://github.com/mvulcu)
+  </Card>
+</CardGrid>
+
+## 🚀 Project Highlights
+
+KulturHub is a **full-stack cloud-native platform** for managing cultural events, built with a DevOps-first approach. 
+It serves as both a functional application and a comprehensive demonstration of modern infrastructure practices.
+
+<CardGrid>
+  <Card title="Multi-Role System" icon="star">
+    Fine-grained access control for Users, Event Organizers, and System Administrators.
+  </Card>
+  <Card title="Event Lifecycle" icon="setting">
+    Create, publish, discover, and RSVP to events with real-time updates.
+  </Card>
+  <Card title="Automated Notifications" icon="information">
+    Email confirmation workflows with SendGrid and asynchronous event handlers.
+  </Card>
+  <Card title="Observability Pipeline" icon="laptop">
+    Live metrics collection via Telegraf agent and InfluxDB time-series storage.
+  </Card>
+</CardGrid>
+
+## 🛠️ Technical Stack
+
+#### Frontend
+- **Framework:** Next.js 14 App Router
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS & shadcn/ui
+
+#### Backend & Data
+- **API:** Next.js Server Actions & Route Handlers
+- **Database:** MongoDB Atlas (M0 TLS connection)
+- **Identity:** Stateless JWT in HTTP-Only Cookies
+
+#### DevOps & Infrastructure
+- **IaC:** Modular Azure Bicep
+- **Compute:** Azure App Service (Linux Web App)
+- **CI/CD:** GitHub Actions (Build, Test, Smoke Test)
+- **Metrics:** Telegraf + InfluxDB OSS
+
+## 📚 Documentation Breakdown
+
+### Architecture & Design
+- [System Architecture &rarr;](architecture/) — Complete topology and component interaction diagrams
+- [Infrastructure as Code &rarr;](infrastructure/) — Modular Bicep templates and deployment parameters
+- [Network & Security &rarr;](security/) — Zero Trust controls, CORS lockdown, and secret management
+
+### Delivery & Operations
+- [Containerization & CI/CD &rarr;](cicd/) — Multi-stage Docker builds and GitHub Actions pipelines
+- [Monitoring & Observability &rarr;](monitoring/) — Telegraf metrics collection and health check probes
+- [Microservices & Background Tasks &rarr;](microservices/) — Event-driven notification workflows
+
+### Economics & Retrospective
+- [Cost Optimization &rarr;](optimization/) — Quota engineering and near-zero running costs
+- [Learning Outcomes &rarr;](learning/) — Engineering takeaways and production challenges
+
+:::note[Environment Status]
+The KulturHub live demo was originally hosted on Microsoft Azure App Service. To eliminate ongoing cloud compute costs, the cloud instance is currently spun down. The complete architecture, Bicep IaC configurations, container definitions, and CI/CD pipelines are preserved and fully documented below.
+:::

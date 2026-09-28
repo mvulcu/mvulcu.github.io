@@ -1,47 +1,51 @@
----
+﻿---
 title: Monitoring Strategy
 description: Comprehensive monitoring setup with real-time dashboards, Azure Functions, and Application Insights
 icon: material/monitor-dashboard
 ---
 
-# :material-chart-areaspline: Monitoring Strategy for DevOps Portfolio
+#  Monitoring Strategy for DevOps Portfolio
 
-<div class="grid cards" markdown>
 
--   :material-chart-line:{ .lg .middle } __Real-time Dashboard__
+
+-   📊  __Real-time Dashboard__
 
     ---
 
     Live metrics visualization directly on the portfolio's main page showing health, performance, and usage data
 
-    [:octicons-graph-24: View Components](#frontend-live-dashboard){ .md-button }
+    [ View Components](#frontend-live-dashboard)
 
--   :material-function-variant:{ .lg .middle } __Health Check API__
+-    __Health Check API__
 
     ---
 
     Custom Azure Function providing centralized metrics endpoint with system health indicators
 
-    [:octicons-pulse-24: Explore API](#health-check-api-evolution){ .md-button }
+    [ Explore API](#health-check-api-evolution)
 
-</div>
 
-## :material-map: Overview
 
-!!! info "Platform Evolution - Azure to GCP Migration"
-    This monitoring documentation covers both the original Azure-based monitoring setup and the current GCP implementation.
-    
-    **Migration Status:** The project was successfully migrated from Azure to GCP in October 2024.
-    
-    [:material-cloud-sync: View Full Migration Journey](migration.md){ .md-button .md-button--primary }
+##  Overview
 
-!!! abstract "Monitoring Architecture Evolution"
-    The monitoring strategy demonstrates practical cloud monitoring across both platforms:
-    
-    - **Real-time Health Status** - Visible health metrics on the main page
-    - **Performance Metrics** - Track latency, memory, and resource usage  
-    - **Platform Migration** - Azure Functions → GCP Cloud Run monitoring
-    - **Usage Analytics** - User interactions with privacy-first approach
+:::note[Platform Evolution - Azure to GCP Migration]
+This monitoring documentation covers both the original Azure-based monitoring setup and the current GCP implementation.
+
+**Migration Status:** The project was successfully migrated from Azure to GCP in October 2024.
+
+[ View Full Migration Journey](migration.md)
+
+:::
+
+:::tip[Monitoring Architecture Evolution]
+The monitoring strategy demonstrates practical cloud monitoring across both platforms:
+
+- **Real-time Health Status** - Visible health metrics on the main page
+- **Performance Metrics** - Track latency, memory, and resource usage  
+- **Platform Migration** - Azure Functions → GCP Cloud Run monitoring
+- **Usage Analytics** - User interactions with privacy-first approach
+
+:::
 
 ```mermaid
 graph TB
@@ -78,16 +82,18 @@ graph TB
     style G fill:#ff6b6b,stroke:#ffffff,stroke-width:2px,color:#ffffff
 ```
 
-## :material-view-dashboard: Components
+##  Components
 
 ### Frontend Live Dashboard
 
-!!! info "Real-time Metrics Visualization"
-    Integrated monitoring component displaying live system health directly on the portfolio
+:::note[Real-time Metrics Visualization]
+Integrated monitoring component displaying live system health directly on the portfolio
+
+:::
 
 **Technical Details:**
 
-=== "Implementation"
+#### Implementation
     ```yaml
     Location: /components/monitoring.tsx
     Library: Recharts for data visualization
@@ -95,13 +101,13 @@ graph TB
     State: React hooks for data management
     ```
 
-=== "Visualizations"
+#### Visualizations
     - **Uptime Gauge** - Service availability percentage
     - **Latency Meter** - Response time in milliseconds
     - **Memory Chart** - Heap usage with percentage
     - **Trend Graphs** - Historical data (last 30 points)
 
-=== "Features"
+#### Features
     - Auto-refresh with loading states
     - Error handling and retry logic
     - Responsive design for all devices
@@ -109,37 +115,41 @@ graph TB
 
 ### Health Check API Evolution
 
-=== "Current: GCP Cloud Run"
+#### Current: GCP Cloud Run
 
-    !!! success "Cloud Run Health Metrics"
-        
-        **Platform:** Google Cloud Run (current)
-        **Technology:** Node.js containerized service
-        **Benefits:** Better cold starts, serverless scaling
+:::tip[Cloud Run Health Metrics]
+    
+    **Platform:** Google Cloud Run (current)
+    **Technology:** Node.js containerized service
+    **Benefits:** Better cold starts, serverless scaling
 
-=== "Legacy: Azure Functions"
+:::
 
-    !!! example "Azure Function Health Check API (Legacy)"
-        
-        **Endpoint:** `https://portfolio-function-monitoring.azurewebsites.net/api/healthcheck`
-        **Technology:** Node.js Azure Function
-        **Status:** Migrated to GCP in October 2024
+#### Legacy: Azure Functions
 
-<div class="grid" markdown>
+:::note[Azure Function Health Check API (Legacy)]
+    
+    **Endpoint:** `https://portfolio-function-monitoring.azurewebsites.net/api/healthcheck`
+    **Technology:** Node.js Azure Function
+    **Status:** Migrated to GCP in October 2024
 
-:material-api:{ .lg } **API Response**
+
+
+:::
+
+ **API Response**
 : JSON formatted health metrics
 
-:material-timer-sand:{ .lg } **Response Time**
+ **Response Time**
 : < 100ms average latency
 
-:material-shield-check:{ .lg } **Availability**
+🛡️  **Availability**
 : 99.9% uptime SLA
 
-:material-refresh:{ .lg } **Update Rate**
+ **Update Rate**
 : Real-time on request
 
-</div>
+
 
 #### Metrics Exposed
 
@@ -158,8 +168,10 @@ graph TB
 
 ### Next.js Application Health Endpoint
 
-!!! tip "Native Health Check Integration"
-    Built-in endpoint for Azure App Service health monitoring
+:::tip[Native Health Check Integration]
+Built-in endpoint for Azure App Service health monitoring
+
+:::
 
 ```mermaid
 sequenceDiagram
@@ -184,27 +196,31 @@ sequenceDiagram
 
 ### Monitoring Platform Evolution
 
-=== "Current: GCP Cloud Monitoring"
+#### Current: GCP Cloud Monitoring
 
-    !!! success "Google Cloud Monitoring & Logging"
-        Built-in observability with Cloud Run integration
-        
-        **Features:**
-        - Container metrics and logs
-        - Real-time monitoring
-        - Distributed tracing support
-        - Cost-effective pricing
+:::tip[Google Cloud Monitoring & Logging]
+    Built-in observability with Cloud Run integration
+    
+    **Features:**
+    - Container metrics and logs
+    - Real-time monitoring
+    - Distributed tracing support
+    - Cost-effective pricing
 
-=== "Legacy: Azure Application Insights"
+:::
 
-    !!! info "Azure Application Insights (Legacy)"
-        Full-stack monitoring from client interactions to server performance
-        
-        **Status:** Replaced with GCP Cloud Monitoring during migration
+#### Legacy: Azure Application Insights
 
-<div class="grid cards" markdown>
+:::note[Azure Application Insights (Legacy)]
+    Full-stack monitoring from client interactions to server performance
+    
+    **Status:** Replaced with GCP Cloud Monitoring during migration
 
--   :material-monitor:{ .lg .middle } __APM Features__
+
+
+:::
+
+-    __APM Features__
 
     ---
     
@@ -213,7 +229,7 @@ sequenceDiagram
     - Dependency tracking
     - Exception logging
 
--   :material-web:{ .lg .middle } __Frontend Analytics__
+-    __Frontend Analytics__
 
     ---
     
@@ -222,7 +238,7 @@ sequenceDiagram
     - Browser metrics
     - Custom events
 
--   :material-shield-alert:{ .lg .middle } __Privacy Controls__
+-    __Privacy Controls__
 
     ---
     
@@ -231,13 +247,13 @@ sequenceDiagram
     - GDPR compliance
     - Opt-out mechanisms
 
-</div>
 
-## :material-chart-areaspline: Metrics Collected
+
+##  Metrics Collected
 
 ### System Metrics
 
-=== "Performance"
+#### Performance
     ```yaml
     Uptime:
       - Process runtime
@@ -255,7 +271,7 @@ sequenceDiagram
       - Data transfer rates
     ```
 
-=== "Resources"
+#### Resources
     ```yaml
     Memory:
       - Heap usage
@@ -273,7 +289,7 @@ sequenceDiagram
       - Cache hits
     ```
 
-=== "Application"
+#### Application
     ```yaml
     Errors:
       - Exception count
@@ -291,9 +307,11 @@ sequenceDiagram
       - API calls
     ```
 
-## :material-pipe-disconnected: Data Flow
+##  Data Flow
 
-!!! abstract "End-to-End Monitoring Pipeline"
+:::tip[End-to-End Monitoring Pipeline]
+
+:::
 
 ```mermaid
 flowchart LR
@@ -338,49 +356,53 @@ flowchart LR
 4. **Insights Platform** processes and stores metrics
 5. **Analytics Engine** enables queries and visualizations
 
-## :material-bell-alert: Alerting Strategy
+##  Alerting Strategy
 
-!!! warning "Production Alert Configuration"
-    While not fully automated in this demo, production systems should implement:
+:::caution[Production Alert Configuration]
+While not fully automated in this demo, production systems should implement:
+
+:::
 
 ### Alert Types
 
-<div class="grid" markdown>
 
-:material-alert-circle:{ .lg } **Performance Alerts**
+
+ **Performance Alerts**
 : High latency, slow queries, memory pressure
 
-:material-server-network-off:{ .lg } **Availability Alerts**
+ **Availability Alerts**
 : Service down, health check failures, timeouts
 
-:material-bug:{ .lg } **Error Alerts**
+ **Error Alerts**
 : Exception spikes, 5xx errors, critical logs
 
-:material-trending-up:{ .lg } **Capacity Alerts**
+ **Capacity Alerts**
 : Resource limits, scaling triggers, quotas
 
-</div>
+
 
 ### Alert Channels
 
-=== "Email Notifications"
+#### Email Notifications
     - Immediate alerts for critical issues
     - Daily/weekly summary reports
     - Stakeholder distribution lists
 
-=== "Teams/Slack Integration"
+#### Teams/Slack Integration
     - Real-time notifications in channels
     - Interactive alert management
     - Incident collaboration
 
-=== "PagerDuty/On-Call"
+#### PagerDuty/On-Call
     - 24/7 critical alerts
     - Escalation policies
     - Incident tracking
 
-## :material-rocket-launch: Future Enhancements
+## 🚀  Future Enhancements
 
-!!! info "Roadmap for Advanced Monitoring"
+:::note[Roadmap for Advanced Monitoring]
+
+:::
 
 ### Planned Improvements
 
@@ -412,9 +434,11 @@ graph LR
     style B fill:#3b82f6,stroke:#fff,stroke-width:2px,color:#fff
 ```
 
-## :material-shield-check: Best Practices Applied
+## 🛡️  Best Practices Applied
 
-!!! success "Monitoring Implementation Guidelines"
+:::tip[Monitoring Implementation Guidelines]
+
+:::
 
 - ✅ **Privacy First** - Cookie consent and data anonymization
 - ✅ **Performance Impact** - Minimal overhead on application
@@ -426,12 +450,11 @@ graph LR
 
 ---
 
-<div class="text-center" markdown>
+
 
 **Part of the DevOps Portfolio project by Maria Vulcu**
 
-[:material-arrow-left: Azure Deployment (Legacy)](deployment.md){ .md-button }
-[:material-cloud-sync: Migration Journey](migration.md){ .md-button .md-button--primary }
-[:material-arrow-up: Back to Home](index.md){ .md-button }
+[ Azure Deployment (Legacy)](deployment.md)
+[ Migration Journey](migration.md)
+[ Back to Home](index.md)
 
-</div>

@@ -1,10 +1,10 @@
----
+﻿---
 title: Cost Optimization Journey
 description: From Azure-native to near-zero cost architecture
 icon: material/currency-usd
 ---
 
-# :material-currency-usd: Cost Optimization Journey
+#  Cost Optimization Journey
 
 ## Overview
 
@@ -100,7 +100,7 @@ graph LR
 2. **Export Data from Cosmos DB**
    ```bash
    # From Jumpbox VM inside VNet
-   mongodump --uri="mongodb://kulturhub-cosmos:xxx@kulturhub-cosmos.mongo.cosmos.azure.com:10255/kulturhub?ssl=true"
+   mongodump --uri="mongodb://kulturhub-cosmos:xxx@kulturhub-cosmos.mong✅cosmos.azure.com:10255/kulturhub?ssl=true"
    ```
 
 3. **Import to MongoDB Atlas**
@@ -111,7 +111,7 @@ graph LR
 4. **Update Connection Strings**
    ```typescript
    // Before
-   const COSMOS_URI = "mongodb://kulturhub-cosmos.mongo.cosmos.azure.com:10255/kulturhub?ssl=true";
+   const COSMOS_URI = "mongodb://kulturhub-cosmos.mong✅cosmos.azure.com:10255/kulturhub?ssl=true";
    
    // After  
    const ATLAS_URI = "mongodb+srv://cluster.mongodb.net/kulturhub?retryWrites=true";
@@ -199,7 +199,7 @@ graph LR
         D[Others<br/>$10]
     end
     
-    subgraph "After: ~$13/month"
+    subgraph "After: ✅
         E[MongoDB Atlas<br/>$0]
         F[Monitoring<br/>$0]
         G[App Service<br/>$13]
@@ -223,12 +223,12 @@ graph LR
 | Monitoring | $25-35 | $0 | $30 avg | $360 |
 | Network | $5 | $0 | $5 | $60 |
 | Storage | $5 | $0.50 | $4.50 | $54 |
-| **Total** | **$93-118** | **~$13** | **$92 avg** | **$1,104** |
+| **Total** | **$93-118** | **✅ | **$92 avg** | **$1,104** |
 
 ### Percentage Reduction
 
 - **Cost Reduction:** 89-93%
-- **Complexity Reduction:** ~70%
+- **Complexity Reduction:** ✅
 - **Azure Dependency:** -95%
 
 ## Technical Improvements
@@ -379,8 +379,8 @@ Consider paid services when:
 
 ```mermaid
 graph LR
-    A[Current<br/>Near-Zero Cost] --> B[Growth Phase<br/>~$50/month]
-    B --> C[Scale Phase<br/>~$200/month]
+    A[Current<br/>Near-Zero Cost] --> B[Growth Phase<br/>✅
+    B --> C[Scale Phase<br/>✅
     C --> D[Enterprise<br/>Custom Pricing]
     
     style A fill:#48bb78,stroke:#fff,stroke-width:2px,color:#fff
@@ -401,9 +401,8 @@ This demonstrates that enterprise-grade features can be built on a student budge
 
 ---
 
-<div class="text-center" markdown>
 
-[:material-arrow-left: Microservices](microservices.md){ .md-button }
-[:material-arrow-right: Learning Outcomes](learning.md){ .md-button .md-button--primary }
 
-</div>
+[ Microservices](microservices.md)
+[ Learning Outcomes](learning.md)
+

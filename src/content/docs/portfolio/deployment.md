@@ -1,55 +1,61 @@
----
+﻿---
 title: Deploying to Azure
 description: Complete guide for deploying the DevOps Portfolio to Microsoft Azure with IaC and CI/CD
 icon: material/microsoft-azure
 ---
 
-# :material-microsoft-azure: Deploying to Azure
+#  Deploying to Azure
 
-<div class="grid cards" markdown>
 
--   :material-terraform:{ .lg .middle } __Infrastructure as Code__
+
+-    __Infrastructure as Code__
 
     ---
 
     Define and deploy Azure resources declaratively using Bicep templates for reproducible infrastructure
 
-    [:octicons-package-24: View Architecture](#infrastructure-deployment-bicep){ .md-button }
+    [ View Architecture](#infrastructure-deployment-bicep)
 
--   :material-rocket-launch:{ .lg .middle } __Automated CI/CD__
+-   🚀  __Automated CI/CD__
 
     ---
 
     GitHub Actions workflows for continuous integration and deployment across dev and prod environments
 
-    [:octicons-workflow-24: Explore Pipelines](#application-deployment-cicd){ .md-button }
+    [ Explore Pipelines](#application-deployment-cicd)
 
-</div>
 
-## :material-map-marker-path: Overview
 
-!!! info "Historical Context - Azure Era"
-    This documentation represents the original Azure deployment architecture of the DevOps Portfolio project.
-    
-    **Current Status:** This project has been **migrated to Google Cloud Platform** in October 2024.
-    
-    [:material-cloud-sync: View Migration Journey](migration.md){ .md-button .md-button--primary }
+##  Overview
 
-!!! warning "Azure Student Subscription (Legacy)"
-    The original Azure deployment used Azure Student subscription with these limitations:
-    
-    - ❌ No Key Vault access
-    - ❌ No custom RBAC roles
-    - ❌ Limited service principal permissions
-    - ✅ App Service with publish profiles
-    - ✅ Basic Application Insights
-    - ✅ Standard storage accounts
+:::note[Historical Context - Azure Era]
+This documentation represents the original Azure deployment architecture of the DevOps Portfolio project.
 
-!!! abstract "Deployment Architecture"
-    The deployment process consists of two main components working together:
-    
-    - **Infrastructure Provisioning** - Azure Bicep templates define all cloud resources
-    - **Application Deployment** - Docker image built and pushed to GHCR by GitHub Actions, then pulled by Azure App Service
+**Current Status:** This project has been **migrated to Google Cloud Platform** in October 2024.
+
+[ View Migration Journey](migration.md)
+
+:::
+
+:::caution[Azure Student Subscription (Legacy)]
+The original Azure deployment used Azure Student subscription with these limitations:
+
+- ❌ No Key Vault access
+- ❌ No custom RBAC roles
+- ❌ Limited service principal permissions
+- ✅ App Service with publish profiles
+- ✅ Basic Application Insights
+- ✅ Standard storage accounts
+
+:::
+
+:::tip[Deployment Architecture]
+The deployment process consists of two main components working together:
+
+- **Infrastructure Provisioning** - Azure Bicep templates define all cloud resources
+- **Application Deployment** - Docker image built and pushed to GHCR by GitHub Actions, then pulled by Azure App Service
+
+:::
 
 ```mermaid
 graph TB
@@ -91,30 +97,32 @@ graph TB
     style F fill:#1f883d,stroke:#ffffff,stroke-width:2px,color:#ffffff
 ```
 
-## :material-checkbox-marked-circle: Prerequisites
+##  Prerequisites
 
-!!! warning "Required Setup"
-    Ensure you have all prerequisites configured before proceeding with deployment
+:::caution[Required Setup]
+Ensure you have all prerequisites configured before proceeding with deployment
 
-<div class="grid" markdown>
 
-:material-microsoft-azure:{ .lg } **Azure Account**
+
+:::
+
+ **Azure Account**
 : Azure Student subscription is sufficient
 
-:material-console:{ .lg } **Azure CLI**
+ **Azure CLI**
 : For manual Bicep deployments
 
-:material-github:{ .lg } **GitHub Account**
+🐙  **GitHub Account**
 : Private repository with Actions
 
-:material-package-variant:{ .lg } **Docker Support**
+ **Docker Support**
 : GitHub Container Registry (GHCR)
 
-</div>
+
 
 ### Required Configurations
 
-=== "Resource Group"
+#### Resource Group
     ```bash
     # Create resource group
     az group create \
@@ -122,25 +130,27 @@ graph TB
       --location westeurope
     ```
 
-=== "Publish Profiles"
+#### Publish Profiles
     Download from Azure Portal:<br>
     1. Navigate to App Service<br>
     2. Go to Deployment Center<br>
     3. Download Publish Profile<br>
     4. Add to GitHub Secrets
 
-=== "GHCR Access"
+#### GHCR Access
     Configure GitHub Container Registry:<br>
     1. Enable package permissions<br>
     2. Set visibility (public/private)<br>
     3. Configure retention policies
 
-## :material-terraform: Infrastructure Deployment (Bicep)
+##  Infrastructure Deployment (Bicep)
 
 ### 📁 Infrastructure Structure
 
-!!! info "Modular Architecture"
-    Infrastructure is organized into reusable Bicep modules for maintainability
+:::note[Modular Architecture]
+Infrastructure is organized into reusable Bicep modules for maintainability
+
+:::
 
 ```
 infra/
@@ -157,7 +167,7 @@ infra/
 
 ### 🔧 Resource Components
 
-=== "App Service Plan"
+#### App Service Plan
     ```yaml
     Purpose: Hosting environment for web apps
     SKU: B1 (Dev) / P1V2 (Prod)
@@ -165,7 +175,7 @@ infra/
     Features: Auto-scaling, Always On
     ```
 
-=== "App Service"
+#### App Service
     ```yaml
     Purpose: Hosts containerized Next.js app
     Runtime: Docker
@@ -173,7 +183,7 @@ infra/
     Monitoring: Integrated with App Insights
     ```
 
-=== "Application Insights"
+#### Application Insights
     ```yaml
     Purpose: Application performance monitoring
     Features: Real-time metrics, logs, alerts
@@ -181,7 +191,7 @@ infra/
     Retention: 90 days
     ```
 
-=== "Storage Account"
+#### Storage Account
     ```yaml
     Purpose: Static assets and backups
     Type: Standard LRS
@@ -191,9 +201,11 @@ infra/
 
 ### 🚀 Deployment Methods
 
-!!! tip "Choose your deployment method based on your workflow"
+:::tip[Choose your deployment method based on your workflow]
 
-=== "Automated (GitHub Actions)"
+:::
+
+#### Automated (GitHub Actions)
 
     The `.github/workflows/infra.yml` workflow handles automated deployments:
     
@@ -209,7 +221,7 @@ infra/
     - Deployment output capture<br>
     - Error handling
 
-=== "Manual (Azure CLI)"
+#### Manual (Azure CLI)
 
     ```bash
     # Login to Azure
@@ -234,12 +246,14 @@ infra/
       --parameters ./parameters/dev.bicepparam
     ```
 
-## :material-docker: Application Deployment (CI/CD)
+##  Application Deployment (CI/CD)
 
 ### 🐳 Containerization Strategy
 
-!!! example "Docker Build and Deployment Flow"
-    Docker image is built and pushed to GHCR inside the CD pipeline, orchestrated by GitHub Actions
+:::note[Docker Build and Deployment Flow]
+Docker image is built and pushed to GHCR inside the CD pipeline, orchestrated by GitHub Actions
+
+:::
 
 ```mermaid
 sequenceDiagram
@@ -265,15 +279,15 @@ sequenceDiagram
 
 **Image Details:**<br>
 - Base: `node:20-alpine`<br>
-- Size: ~150MB (optimized)<br>
+- Size: ✅ (optimized)<br>
 - Registry: GitHub Container Registry<br>
 - Tags: `dev`, `prod`, `{git-sha}`
 
 ### 📦 CI/CD Workflows
 
-<div class="grid cards" markdown>
 
--   :material-check-circle:{ .lg .middle } __Continuous Integration__
+
+-   ✅  __Continuous Integration__
 
     ---
 
@@ -290,7 +304,7 @@ sequenceDiagram
     - Audit dependencies<br>
     - Build verification
 
--   :material-rocket:{ .lg .middle } __Development Deployment__
+-   🚀  __Development Deployment__
 
     ---
 
@@ -306,7 +320,7 @@ sequenceDiagram
     4. Pull image (cache workaround)<br>
     5. Deploy via publish profile
 
--   :material-shield-check:{ .lg .middle } __Production Deployment__
+-   🛡️  __Production Deployment__
 
     ---
 
@@ -322,31 +336,33 @@ sequenceDiagram
     4. Pull image (cache workaround)<br>
     5. Deploy via publish profile<br>
 
-</div>
 
-!!! example "CD Workflow Example"
-    ```yaml
-    # Key sections from CD workflow
-    env:
-      GHCR_IMAGE: ghcr.io/mvulcu/devops-portfolio
-    
-    steps:
-      # Docker build with multiple tags
-      - Build image with :dev and :sha tags
-      
-      # Push to GitHub Container Registry
-      - Push both tags to GHCR
-      
-      # Azure deployment workaround
-      - Pull image before deploy (cache fix)
-      
-      # Deploy using publish profile
-      - Deploy to Azure App Service
-    ```
+
+:::note[CD Workflow Example]
+```yaml
+# Key sections from CD workflow
+env:
+  GHCR_IMAGE: ghcr.io/mvulcu/devops-portfolio
+
+steps:
+  # Docker build with multiple tags
+  - Build image with :dev and :sha tags
+  
+  # Push to GitHub Container Registry
+  - Push both tags to GHCR
+  
+  # Azure deployment workaround
+  - Pull image before deploy (cache fix)
+  
+  # Deploy using publish profile
+  - Deploy to Azure App Service
+```
+
+:::
 
 ### 🔐 Environment Configuration
 
-=== "Development Environment"
+#### Development Environment
 
     ```yaml
     Branch: dev
@@ -360,7 +376,7 @@ sequenceDiagram
       - Lower SKUs for cost optimization
     ```
 
-=== "Production Environment"
+#### Production Environment
 
     ```yaml
     Branch: main
@@ -374,10 +390,12 @@ sequenceDiagram
       - Auto-scaling enabled
     ```
 
-## :material-key-variant: Secrets Management
+##  Secrets Management
 
-!!! danger "Security on Azure Student"
-    Azure Student subscription has limitations - Key Vault and RBAC are not available. All secrets are managed through GitHub Secrets and App Service settings.
+:::danger[Security on Azure Student]
+Azure Student subscription has limitations - Key Vault and RBAC are not available. All secrets are managed through GitHub Secrets and App Service settings.
+
+:::
 
 ### GitHub Secrets Configuration
 
@@ -398,16 +416,20 @@ graph LR
     style B fill:#0078d4,stroke:#fff,stroke-width:2px,color:#fff
 ```
 
-!!! info "Azure Student Limitations"
-    - No Key Vault access
-    - No custom RBAC roles
-    - Limited to App Service authentication
-    - Secrets stored as App Service settings
+:::note[Azure Student Limitations]
+- No Key Vault access
+- No custom RBAC roles
+- Limited to App Service authentication
+- Secrets stored as App Service settings
 
-## :material-monitor-dashboard: Monitoring Function
+:::
 
-!!! info "Health Check Service"
-    Separate Azure Function provides real-time health metrics for the portfolio
+##  Monitoring Function
+
+:::note[Health Check Service]
+Separate Azure Function provides real-time health metrics for the portfolio
+
+:::
 
 **Deployment Details:**<br>
 - **Type:** Azure Function App (Node.js)<br>
@@ -420,7 +442,7 @@ graph LR
 https://portfolio-function-monitoring.azurewebsites.net/api/healthcheck
 ```
 
-## :material-checkbox-multiple-marked: Verification Steps
+##  Verification Steps
 
 ### Post-Deployment Checklist
 
@@ -449,23 +471,24 @@ https://portfolio-function-monitoring.azurewebsites.net/api/healthcheck
     **Authentication Failures**
     : Regenerate service principal credentials
 
-## :material-chart-timeline: Performance Optimization
+##  Performance Optimization
 
-!!! success "Deployment Best Practices"
-    - Use deployment slots for zero-downtime deployments
-    - Enable Application Insights profiling
-    - Configure auto-scaling rules
-    - Implement health checks
-    - Use Azure CDN for static assets
+:::tip[Deployment Best Practices]
+- Use deployment slots for zero-downtime deployments
+- Enable Application Insights profiling
+- Configure auto-scaling rules
+- Implement health checks
+- Use Azure CDN for static assets
+
+:::
 
 ---
 
-<div class="text-center" markdown>
+
 
 **Part of the DevOps Portfolio project by Maria Vulcu**
 
-[:material-arrow-left: Back to Portfolio](index.md){ .md-button }
-[:material-cloud-sync: Migration Journey](migration.md){ .md-button .md-button--primary }
-[:material-monitor-dashboard: Monitoring Strategy](monitoring.md){ .md-button }
+[ Back to Portfolio](index.md)
+[ Migration Journey](migration.md)
+[ Monitoring Strategy](monitoring.md)
 
-</div>

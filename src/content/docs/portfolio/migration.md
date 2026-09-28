@@ -4,41 +4,43 @@ description: Complete documentation of the DevOps Portfolio migration from Micro
 icon: material/cloud-sync
 ---
 
-# :material-cloud-sync: Azure to GCP Migration Journey
+#  Azure to GCP Migration Journey
 
-<div class="grid cards" markdown>
 
--   :material-chart-timeline:{ .lg .middle } __Evolution Story__
+
+-    __Evolution Story__
 
     ---
 
     Journey from Azure App Service to GCP Cloud Run, demonstrating modern cloud migration practices with zero downtime
 
-    [:octicons-arrow-right-24: View Results](#results-benefits){ .md-button }
+    [ View Results](#results-benefits)
 
--   :material-trending-down:{ .lg .middle } __60% Cost Reduction__
+-    __60% Cost Reduction__
 
     ---
 
     Achieved significant cost savings through strategic use of GCP Free Tier and serverless architecture
 
-    [:octicons-graph-24: See Analysis](#cost-analysis){ .md-button }
+    [ See Analysis](#cost-analysis)
 
-</div>
 
-## :material-information: Executive Summary
+
+##  Executive Summary
 
 This document details the successful migration of the DevOps Portfolio website from Microsoft Azure to Google Cloud Platform (GCP). The migration was executed to optimize costs, improve performance, and gain hands-on experience with GCP services.
 
-!!! success "Migration Results"
-    - ✅ **Zero Downtime Migration** - Seamless DNS transition
-    - 💰 **~60% Cost Reduction** - Leveraging GCP Free Tier
-    - ⚡ **Enhanced Performance** - Improved cold start times 
-    - 🔧 **Simplified Architecture** - Eliminated complex dependencies
+:::tip[Migration Results]
+- ✅ **Zero Downtime Migration** - Seamless DNS transition
+- 💰 **✅ Cost Reduction** - Leveraging GCP Free Tier
+- ⚡ **Enhanced Performance** - Improved cold start times 
+- 🔧 **Simplified Architecture** - Eliminated complex dependencies
+
+:::
 
 ---
 
-## :material-compare: Architecture Evolution
+##  Architecture Evolution
 
 ### Before: Azure Architecture
 
@@ -105,7 +107,7 @@ graph TB
 
 ---
 
-## :material-swap-horizontal: Service Mapping
+##  Service Mapping
 
 | Azure Service | GCP Equivalent | Migration Rationale |
 |---------------|----------------|-------------------|
@@ -117,11 +119,11 @@ graph TB
 
 ---
 
-## :material-code-tags: Technical Implementation
+##  Technical Implementation
 
 ### Infrastructure as Code Evolution
 
-=== "Azure Bicep (Before)"
+#### Azure Bicep (Before)
 
     ```bicep
     module appService 'modules/appservice.bicep' = {
@@ -143,7 +145,7 @@ graph TB
     }
     ```
 
-=== "GCP Terraform (After)"
+#### GCP Terraform (After)
 
     ```hcl
     resource "google_cloud_run_v2_service" "portfolio" {
@@ -173,8 +175,10 @@ graph TB
 
 #### 1. Containerization Strategy
 
-!!! info "Container Evolution"
-    Migrated from platform-managed runtime to fully containerized deployment
+:::note[Container Evolution]
+Migrated from platform-managed runtime to fully containerized deployment
+
+:::
 
 **New Components Added:**
 ```dockerfile
@@ -201,7 +205,7 @@ CMD ["node", "server.js"]
 #### 2. Secret Manager & External SMTP Integration
 
 **Architecture Enhancement:**
-- Replaced Azure Communication Email with **Zoho SMTP (`smtp.zoho.eu`)** and **SendGrid**
+- Replaced Azure Communication Email with **Zoho SMTP (`smtp.zoh✅eu`)** and **SendGrid**
 - **Zero Plaintext Secrets:** Passwords and API keys stored in **Google Secret Manager**
 - **Automatic Secret Resolution:** Mounted dynamically into Cloud Run containers via `value_source.secret_key_ref`
 
@@ -209,7 +213,7 @@ CMD ["node", "server.js"]
 
 #### 3. Environment Configuration Evolution
 
-=== "Azure Configuration"
+#### Azure Configuration
 
     ```bash
     # Azure App Service Settings
@@ -219,7 +223,7 @@ CMD ["node", "server.js"]
     APPLICATIONINSIGHTS_CONNECTION_STRING=***
     ```
 
-=== "GCP Configuration"
+#### GCP Configuration
 
     ```bash
     # GCP Cloud Run Environment
@@ -231,38 +235,42 @@ CMD ["node", "server.js"]
 
 ---
 
-## :material-rocket-launch: Migration Process
+## 🚀  Migration Process
 
 ### Phase 1: Infrastructure Preparation
 
-!!! tip "Day 1: Foundation Setup"
-    
-    **GCP Project Initialization**
-    ```bash
-    # Create new GCP project
-    gcloud projects create portfolio-migration-2024
-    
-    # Enable required APIs
-    gcloud services enable run.googleapis.com
-    gcloud services enable storage.googleapis.com
-    gcloud services enable artifactregistry.googleapis.com
-    ```
-    
-    **Service Account Setup**
-    ```bash
-    # Create service account for deployment
-    gcloud iam service-accounts create portfolio-deployer \
-        --display-name="Portfolio Deployment Service Account"
-    
-    # Grant necessary permissions
-    gcloud projects add-iam-policy-binding $PROJECT_ID \
-        --member="serviceAccount:portfolio-deployer@$PROJECT_ID.iam.gserviceaccount.com" \
-        --role="roles/run.admin"
-    ```
+:::tip[Day 1: Foundation Setup]
+
+**GCP Project Initialization**
+```bash
+# Create new GCP project
+gcloud projects create portfolio-migration-2024
+
+# Enable required APIs
+gcloud services enable run.googleapis.com
+gcloud services enable storage.googleapis.com
+gcloud services enable artifactregistry.googleapis.com
+```
+
+**Service Account Setup**
+```bash
+# Create service account for deployment
+gcloud iam service-accounts create portfolio-deployer \
+    --display-name="Portfolio Deployment Service Account"
+
+# Grant necessary permissions
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member="serviceAccount:portfolio-deployer@$PROJECT_ID.iam.gserviceaccount.com" \
+    --role="roles/run.admin"
+```
+
+:::
 
 ### Phase 2: Application Migration
 
-!!! example "Day 1-2: Code Evolution"
+:::note[Day 1-2: Code Evolution]
+
+:::
 
 **Containerization Implementation**
 ```yaml
@@ -318,17 +326,19 @@ graph LR
 
 ### Phase 4: DNS Migration
 
-!!! success "Day 2: Zero Downtime Cutover"
-    
-    **Gradual Traffic Migration:**
-    1. Updated DNS records to Cloud Run URL
-    2. Monitored DNS propagation globally
-    3. Verified SSL certificate auto-provisioning
-    4. Validated all user journeys
+:::tip[Day 2: Zero Downtime Cutover]
+
+**Gradual Traffic Migration:**
+1. Updated DNS records to Cloud Run URL
+2. Monitored DNS propagation globally
+3. Verified SSL certificate auto-provisioning
+4. Validated all user journeys
+
+:::
 
 ---
 
-## :material-chart-line: Results & Benefits
+## 📊  Results & Benefits
 
 ### Performance Improvements
 
@@ -341,7 +351,7 @@ graph LR
 
 ### Cost Analysis
 
-!!! success "Annual Savings: ~$194"
+!!! success "Annual Savings: ✅
 
 **Azure Monthly Costs (Previous):**
 ```
@@ -349,7 +359,7 @@ App Service B1:        $13.14/month
 Storage Account:       $2.00/month  
 Communication Email:   $1.00/month
 ─────────────────────────────────
-Total:                ~$16.14/month
+Total:                ✅
 ```
 
 **GCP Monthly Costs (Current):**
@@ -363,68 +373,90 @@ Total:                $0/month
 
 ### Operational Benefits
 
-<div class="grid" markdown>
 
-:material-cog-outline:{ .lg } **Simplified Architecture**
+
+ **Simplified Architecture**
 : Reduced managed services count, eliminated email complexity
 
-:material-shield-check:{ .lg } **Enhanced Security**  
+🛡️  **Enhanced Security**  
 : Secret Manager integration, IAM-based access control
 
-:material-speedometer:{ .lg } **Better DX**
+⚡  **Better DX**
 : Faster deployments, container parity, comprehensive logging
 
-:material-chart-timeline:{ .lg } **Improved Monitoring**
+ **Improved Monitoring**
 : Built-in Cloud Monitoring with better visibility
 
-</div>
+
 
 ---
 
-## :material-alert-circle: Challenges & Solutions
+##  Challenges & Solutions
 
 ### Challenge 1: Email Service Replacement
-!!! question "Issue"
-    Azure Communication Email service needed replacement in a serverless GCP architecture
+:::tip[Issue]
+Azure Communication Email service needed replacement in a serverless GCP architecture
 
-!!! check "Solution"
-    Integrated Zoho SMTP (`smtp.zoho.eu`) and SendGrid, storing sensitive credentials in **Google Secret Manager** and injecting them securely into Cloud Run at runtime
+:::
+
+:::tip[Solution]
+Integrated Zoho SMTP (`smtp.zoh✅eu`) and SendGrid, storing sensitive credentials in **Google Secret Manager** and injecting them securely into Cloud Run at runtime
+
+:::
 
 ### Challenge 2: Storage URL Migration  
-!!! question "Issue"
-    Different URL patterns between Azure Storage and GCP Storage
+:::tip[Issue]
+Different URL patterns between Azure Storage and GCP Storage
 
-!!! check "Solution"
-    Updated application configuration, tested all static asset references thoroughly
+:::
+
+:::tip[Solution]
+Updated application configuration, tested all static asset references thoroughly
+
+:::
 
 ### Challenge 3: Container Optimization
-!!! question "Issue"
-    Initial monolithic Docker image size was too large (>1GB)
+:::tip[Issue]
+Initial monolithic Docker image size was too large (>1GB)
 
-!!! check "Solution"
-    Implemented multi-stage builds on `node:20-alpine` with Next.js standalone output mode, reducing final runtime image to **~150MB**
+:::
+
+:::tip[Solution]
+Implemented multi-stage builds on `node:20-alpine` with Next.js standalone output mode, reducing final runtime image to **✅
+
+:::
 
 ### Challenge 4: Environment Variables
-!!! question "Issue"
-    Different environment variable patterns between platforms
+:::tip[Issue]
+Different environment variable patterns between platforms
 
-!!! check "Solution"
-    Created environment-specific configs with proper secret management
+:::
+
+:::tip[Solution]
+Created environment-specific configs with proper secret management
+
+:::
 
 ---
 
-## :material-school: Lessons Learned
+##  Lessons Learned
 
 ### Technical Insights
 
-!!! tip "Container-First Benefits"
-    Cloud Run's container model provided superior runtime environment control compared to platform-managed services
+:::tip[Container-First Benefits]
+Cloud Run's container model provided superior runtime environment control compared to platform-managed services
 
-!!! info "IaC Multi-Cloud Value"  
-    Terraform's multi-cloud support proved invaluable for migration flexibility and future portability
+:::
 
-!!! success "Simplification Wins"
-    Removing email functionality improved maintainability without compromising user experience
+:::note[IaC Multi-Cloud Value]
+Terraform's multi-cloud support proved invaluable for migration flexibility and future portability
+
+:::
+
+:::tip[Simplification Wins]
+Removing email functionality improved maintainability without compromising user experience
+
+:::
 
 ### Migration Best Practices
 
@@ -436,7 +468,7 @@ Total:                $0/month
 
 ---
 
-## :material-road: Future Enhancements
+##  Future Enhancements
 
 ### Short-term (Next 3 months)
 - [ ] Implement Cloud CDN for global content delivery
@@ -455,21 +487,23 @@ Total:                $0/month
 
 ---
 
-## :material-check-circle: Conclusion
+## ✅  Conclusion
 
 The Azure to GCP migration was completed successfully with **zero downtime** and significant operational improvements. This project demonstrates:
 
-!!! abstract "Key Achievements"
-    - **Cloud Platform Flexibility** through proper architecture design
-    - **Cost Optimization** via strategic free tier utilization
-    - **Performance Enhancement** using modern serverless technologies  
-    - **Operational Simplification** through architectural streamlining
+:::tip[Key Achievements]
+- **Cloud Platform Flexibility** through proper architecture design
+- **Cost Optimization** via strategic free tier utilization
+- **Performance Enhancement** using modern serverless technologies  
+- **Operational Simplification** through architectural streamlining
+
+:::
 
 The migration serves as a practical example of cloud migration best practices and showcases expertise across both Azure and GCP platforms.
 
 ---
 
-## :material-file-tree: Technical Specifications
+##  Technical Specifications
 
 ### Current Infrastructure Stack
 ```yaml
@@ -498,13 +532,13 @@ Monitoring: Cloud Monitoring & Logging
 
 ---
 
-<div class="text-center" markdown>
+
 
 **Migration completed: October 2024**  
 *Document version: 1.0*
 
-[:material-arrow-left: Back to Portfolio](index.md){ .md-button }
-[:material-microsoft-azure: Azure Legacy Docs](deployment.md){ .md-button }
-[:material-monitor-dashboard: Monitoring Strategy](monitoring.md){ .md-button .md-button--primary }
+[ Back to Portfolio](index.md)
+[ Azure Legacy Docs](deployment.md)
+[ Monitoring Strategy](monitoring.md)
 
-</div>
+

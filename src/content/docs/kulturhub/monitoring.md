@@ -4,7 +4,7 @@ description: Comprehensive monitoring strategy for KulturHub
 icon: material/monitor-dashboard
 ---
 
-# :material-monitor-dashboard: Monitoring & Observability
+#  Monitoring & Observability
 
 ## Overview
 
@@ -232,8 +232,10 @@ export class MetricsService {
 }
 ```
 
-!!! tip "Observability Best Practices: Authentication & Metric Batching"
-    The Telegraf endpoint is authenticated via Bearer tokens (TELEGRAF_SECRET_TOKEN) to prevent spoofing. Under heavy user load, single metrics are buffered in an in-memory queue and dispatched in batches every 5 seconds to reduce outbound network overhead.
+:::tip[Observability Best Practices: Authentication & Metric Batching]
+The Telegraf endpoint is authenticated via Bearer tokens (TELEGRAF_SECRET_TOKEN) to prevent spoofing. Under heavy user load, single metrics are buffered in an in-memory queue and dispatched in batches every 5 seconds to reduce outbound network overhead.
+
+:::
 
 ### 3. Key Metrics Tracked
 
@@ -476,10 +478,10 @@ Response time targets:
 
 | Component | Original Cost | Optimized Cost | Savings |
 |-----------|---------------|----------------|---------|
-| Application Insights | ~$15/month | $0 | 100% |
-| Log Analytics | ~$10/month | $0 | 100% |
-| Grafana VM | $0 | ~$5/month | -$5 |
-| **Total** | ~$25/month | ~$5/month | 80% |
+| Application Insights | ✅ | $0 | 100% |
+| Log Analytics | ✅ | $0 | 100% |
+| Grafana VM | $0 | ✅ | -$5 |
+| **Total** | ✅ | ✅ | 80% |
 
 ### Best Practices
 
@@ -490,9 +492,9 @@ Response time targets:
 
 ---
 
-<div class="text-center" markdown>
 
-[:material-arrow-left: Security](security.md){ .md-button }
-[:material-arrow-right: Microservices](microservices.md){ .md-button .md-button--primary }
 
-</div>
+[ Security](security.md)
+[ Microservices](microservices.md)
+
+

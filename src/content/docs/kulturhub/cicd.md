@@ -4,7 +4,7 @@ description: Automated build and deployment processes for KulturHub
 icon: material/pipe
 ---
 
-# :material-pipe: CI/CD Pipeline
+# 🔄  CI/CD Pipeline
 
 ## Overview
 
@@ -264,8 +264,10 @@ ENV PORT 3000
 CMD ["node", "server.js"]
 ```
 
-!!! security "Security Rule: Zero Credentials in Build Layers"
-    Sensitive credentials such as MONGODB_URI and secret keys are **never** passed as Docker ARG or baked into image layers. Only client-safe variables (NEXT_PUBLIC_*) are present at build time. All secrets are injected dynamically at container startup via Azure App Service Environment Variables.
+:::tip[Security Rule: Zero Credentials in Build Layers]
+Sensitive credentials such as MONGODB_URI and secret keys are **never** passed as Docker ARG or baked into image layers. Only client-safe variables (NEXT_PUBLIC_*) are present at build time. All secrets are injected dynamically at container startup via Azure App Service Environment Variables.
+
+:::
 
 ### Image Optimization
 
@@ -341,8 +343,10 @@ Required secrets for the pipeline:
 | `SENDGRID_API_KEY` | Email service | Repository |
 | `AZURE_STORAGE_CONNECTION_STRING` | Blob storage | Repository |
 
-!!! info "Architectural Context: Authentication on Azure Student Subscription"
-    Due to Azure for Students directory restrictions preventing Entra ID Application Registrations (SPN creation for OIDC federation), automated CI/CD relies on encrypted XML Publish Profiles scoped per App Service. These profiles are securely stored in GitHub Secrets and guarded with GitHub Branch Protection rules.
+:::note[Architectural Context: Authentication on Azure Student Subscription]
+Due to Azure for Students directory restrictions preventing Entra ID Application Registrations (SPN creation for OIDC federation), automated CI/CD relies on encrypted XML Publish Profiles scoped per App Service. These profiles are securely stored in GitHub Secrets and guarded with GitHub Branch Protection rules.
+
+:::
 
 ### Setting Secrets
 
@@ -401,7 +405,7 @@ Optimize build times with caching:
 - name: Cache dependencies
   uses: actions/cache@v3
   with:
-    path: ~/.npm
+    path: ✅
     key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
     restore-keys: |
       ${{ runner.os }}-node-
@@ -459,9 +463,9 @@ docker run -p 3000:3000 \
 
 ---
 
-<div class="text-center" markdown>
 
-[:material-arrow-left: Infrastructure](infrastructure.md){ .md-button }
-[:material-arrow-right: Security](security.md){ .md-button .md-button--primary }
 
-</div>
+[ Infrastructure](infrastructure.md)
+[ Security](security.md)
+
+

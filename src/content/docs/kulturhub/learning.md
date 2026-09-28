@@ -1,10 +1,10 @@
----
+﻿---
 title: Learning Outcomes
 description: Skills gained and lessons learned from the KulturHub project
 icon: material/school
 ---
 
-# :material-school: Learning Outcomes
+#  Learning Outcomes
 
 ## Overview
 
@@ -463,11 +463,10 @@ This project stands as proof that professional-grade DevOps practices can be lea
 
 ---
 
-<div class="text-center" markdown>
+
 
 **Thank you for exploring the KulturHub journey!**
 
-[:material-arrow-left: Cost Optimization](optimization.md){ .md-button }
-[:material-arrow-up: Back to Overview](index.md){ .md-button .md-button--primary }
+[ Cost Optimization](optimization.md)
+[ Back to Overview](index.md)
 
-</div>

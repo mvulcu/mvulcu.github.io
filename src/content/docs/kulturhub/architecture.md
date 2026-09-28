@@ -4,7 +4,7 @@ description: Complete architectural overview of KulturHub platform
 icon: material/layers-triple
 ---
 
-# :material-layers-triple: System Architecture
+#  System Architecture
 
 ## Overview
 
@@ -64,14 +64,16 @@ graph TB
     style M fill:#0078d4,stroke:#fff,stroke-width:2px,color:#fff
 ```
 
-!!! info "Architectural Decision: Stateless Authentication over Redis"
-    To respect resource limits and reduce operational complexity under the **Azure for Students** tier, session state is managed completely statelessly via cryptographically signed JWTs stored in secure httpOnly cookies. This eliminated the need for a costly external Redis cluster while preserving horizontal scaling capabilities.
+:::note[Architectural Decision: Stateless Authentication over Redis]
+To respect resource limits and reduce operational complexity under the **Azure for Students** tier, session state is managed completely statelessly via cryptographically signed JWTs stored in secure httpOnly cookies. This eliminated the need for a costly external Redis cluster while preserving horizontal scaling capabilities.
+
+:::
 
 ## Component Architecture
 
 ### Frontend Architecture
 
-The frontend uses Next.js 14 with the App Router for optimal performance and SEO.
+The frontend uses Next.js 14 with the App Router for optimal performance and SE✅
 
 **Key Technologies:**<br>
 - **Framework:** Next.js 14 (App Router)<br>
@@ -169,8 +171,10 @@ erDiagram
 
 ### Original Azure-Native Design (Enterprise Blueprint)
 
-!!! note "Evolution Note: Enterprise Blueprint vs Budget Realities"
-    The initial architectural blueprint envisioned Azure Front Door with Web Application Firewall (WAF) and Private Endpoints. Under the **Azure for Students** subscription constraints ( credit limit), Front Door (+/month) and Cosmos DB Private Endpoints (+/month) were streamlined. Security was transferred to application-level rate limiting, CORS whitelisting, MongoDB Atlas IP access lists, and Azure App Service platform TLS/DDoS protection.
+:::tip[Evolution Note: Enterprise Blueprint vs Budget Realities]
+The initial architectural blueprint envisioned Azure Front Door with Web Application Firewall (WAF) and Private Endpoints. Under the **Azure for Students** subscription constraints ( credit limit), Front Door (+/month) and Cosmos DB Private Endpoints (+/month) were streamlined. Security was transferred to application-level rate limiting, CORS whitelisting, MongoDB Atlas IP access lists, and Azure App Service platform TLS/DDoS protection.
+
+:::
 
 The initial implementation used comprehensive Azure networking:
 
@@ -365,9 +369,9 @@ The architecture supports horizontal scaling through:
 
 ---
 
-<div class="text-center" markdown>
 
-[:material-arrow-left: Overview](index.md){ .md-button }
-[:material-arrow-right: Infrastructure](infrastructure.md){ .md-button .md-button--primary }
 
-</div>
+[ Overview](index.md)
+[ Infrastructure](infrastructure.md)
+
+

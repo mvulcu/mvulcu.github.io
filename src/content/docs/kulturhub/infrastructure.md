@@ -4,7 +4,7 @@ description: Azure Bicep templates and deployment strategies for KulturHub
 icon: material/terraform
 ---
 
-# :material-terraform: Infrastructure as Code
+#  Infrastructure as Code
 
 ## Overview
 
@@ -327,7 +327,7 @@ All resources implement security best practices:<br>
 - Managed identities where possible<br>
 - Network restrictions
 
-## :material-shield-key: Azure Student Subscription Constraints & Trade-offs
+##  Azure Student Subscription Constraints & Trade-offs
 
 Building within an **Azure for Students** subscription ($100 credit limit, restricted tenant roles) requires deliberate engineering trade-offs:
 
@@ -336,7 +336,7 @@ Building within an **Azure for Students** subscription ($100 credit limit, restr
 | **No Entra ID SPN Creation** | Cannot provision Service Principals for OIDC federation | Automated deployments authenticate via encrypted GitHub Secrets with Azure Publish Profiles with least-privilege repository access |
 | **No Key Vault RBAC / Policy** | Cannot bind Key Vault directly to App Service | Secrets stored encrypted at rest in App Service Configuration (AES-256) and GitHub Secrets |
 | **B1 SKU (No Deployment Slots)** | Cannot perform blue/green slot staging swaps | Atomic container updates using immutable Git SHA image tags with automated rollback capability |
-| **$100 Annual Credit Ceiling** | Enterprise services (Front Door, Cosmos DB) exhaust quota rapidly | Architecture optimized to B1 App Service + MongoDB Atlas M0 + Open Source Grafana VM (~$13/mo) |
+| **$100 Annual Credit Ceiling** | Enterprise services (Front Door, Cosmos DB) exhaust quota rapidly | Architecture optimized to B1 App Service + MongoDB Atlas M0 + Open Source Grafana VM (✅ |
 
 ## Troubleshooting
 
@@ -375,9 +375,9 @@ az deployment group create \
 
 ---
 
-<div class="text-center" markdown>
 
-[:material-arrow-left: Architecture](architecture.md){ .md-button }
-[:material-arrow-right: CI/CD Pipeline](cicd.md){ .md-button .md-button--primary }
 
-</div>
+[ Architecture](architecture.md)
+[ CI/CD Pipeline](cicd.md)
+
+
