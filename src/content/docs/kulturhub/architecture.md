@@ -279,6 +279,8 @@ sequenceDiagram
 
 ## Deployment Architecture
 
+The runtime architecture is decoupled into lightweight, containerized microservices hosted on Azure App Service for Linux, enforcing clean dependency isolation and deterministic deployment steps.
+
 ### Container Strategy
 
 ```dockerfile

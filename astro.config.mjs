@@ -1,4 +1,4 @@
-﻿// @ts-check
+// @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
@@ -9,6 +9,7 @@ export default defineConfig({
 		starlight({
 			title: 'DevOps & Cloud Engineering Hub',
 			description: 'Production architecture specifications, multi-cloud IaC blueprints, and SRE post-mortems by Maria Vulcu.',
+			customCss: ['./src/styles/custom.css'],
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/mvulcu' },
 				{ icon: 'linkedin', label: 'LinkedIn', href: 'https://linkedin.com/in/mariavulcu' },
@@ -19,28 +20,109 @@ export default defineConfig({
 					tag: 'script',
 					attrs: { type: 'module' },
 					content: `
-						import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-						mermaid.initialize({ startOnLoad: false, theme: 'dark' });
-						const renderMermaid = async () => {
-							const blocks = document.querySelectorAll('pre:has(code.language-mermaid), pre.mermaid');
-							for (const block of blocks) {
-								const code = block.querySelector('code') || block;
+						const renderMermaidDiagrams = async () => {
+							const codeBlocks = document.querySelectorAll('pre[data-language="mermaid"]');
+							if (codeBlocks.length === 0) return;
+
+							const targets = [];
+							for (const pre of codeBlocks) {
+								if (pre.dataset.mermaidProcessed === 'true') continue;
+								pre.dataset.mermaidProcessed = 'true';
+
+								const frame = pre.closest('.expressive-code') || pre.closest('figure') || pre;
+
+								// Extract each line from .ec-line to preserve all line breaks and indentation
+								const lineElements = pre.querySelectorAll('.ec-line');
+								let codeText = '';
+								if (lineElements.length > 0) {
+									codeText = Array.from(lineElements)
+										.map(el => el.textContent || '')
+										.join('\\n');
+								} else {
+									codeText = pre.textContent || '';
+								}
+
+								// Decode common HTML entities
+								codeText = codeText
+									.replace(/&gt;/g, '>')
+									.replace(/&lt;/g, '<')
+									.replace(/&quot;/g, '"')
+									.replace(/&amp;/g, '&')
+									.trim();
+
+								if (!codeText) continue;
+
 								const container = document.createElement('div');
-								container.className = 'mermaid';
-								container.style.display = 'flex';
-								container.style.justifyContent = 'center';
-								container.style.margin = '2rem 0';
-								container.textContent = code.textContent;
-								block.replaceWith(container);
+								container.className = 'mermaid-diagram-card';
+								const inner = document.createElement('div');
+								inner.className = 'mermaid-diagram-inner';
+								container.appendChild(inner);
+
+								frame.replaceWith(container);
+								targets.push({ container, inner, code: codeText });
 							}
-							await mermaid.run({ querySelector: '.mermaid' });
+
+							if (targets.length === 0) return;
+
+							try {
+								const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs');
+								mermaid.initialize({
+									startOnLoad: false,
+									theme: 'dark',
+									securityLevel: 'loose',
+									fontFamily: "'JetBrains Mono', 'Inter', monospace",
+									themeVariables: {
+										darkMode: true,
+										background: '#090d16',
+										mainBkg: '#0f172a',
+										nodeBorder: '#38bdf8',
+										clusterBkg: '#141d2e',
+										clusterBorder: '#334155',
+										primaryColor: '#0369a1',
+										primaryTextColor: '#f8fafc',
+										primaryBorderColor: '#38bdf8',
+										lineColor: '#7dd3fc',
+										secondaryColor: '#4f46e5',
+										tertiaryColor: '#1e293b',
+										textColor: '#e2e8f0',
+										edgeLabelBackground: '#0f172a',
+										actorBkg: '#0f172a',
+										actorBorder: '#38bdf8',
+										actorTextColor: '#f8fafc',
+										signalColor: '#38bdf8',
+										signalTextColor: '#e2e8f0',
+										labelBoxBkgColor: '#0f172a',
+										labelBoxBorderColor: '#38bdf8',
+										labelTextColor: '#f8fafc',
+										loopTextColor: '#f8fafc',
+										noteBkgColor: '#1e293b',
+										noteBorderColor: '#64748b',
+										noteTextColor: '#f8fafc'
+									}
+								});
+
+								for (let i = 0; i < targets.length; i++) {
+									const { inner, code } = targets[i];
+									try {
+										const id = 'mermaid-svg-' + Math.random().toString(36).substring(2, 9) + '-' + i;
+										const { svg } = await mermaid.render(id, code);
+										inner.innerHTML = svg;
+									} catch (err) {
+										console.warn('Mermaid render warning:', err);
+										inner.innerHTML = '<pre class="mermaid-fallback">' + code + '</pre>';
+									}
+								}
+							} catch (e) {
+								console.error('Failed to load Mermaid ESM library:', e);
+							}
 						};
+
 						if (document.readyState === 'loading') {
-							document.addEventListener('DOMContentLoaded', renderMermaid);
+							document.addEventListener('DOMContentLoaded', renderMermaidDiagrams);
 						} else {
-							renderMermaid();
+							renderMermaidDiagrams();
 						}
-						document.addEventListener('astro:page-load', renderMermaid);
+						document.addEventListener('astro:page-load', renderMermaidDiagrams);
 					`,
 				},
 			],
