@@ -1,10 +1,8 @@
-﻿---
+---
 title: CI/CD Pipeline
 description: Automated build and deployment processes for KulturHub
 icon: material/pipe
 ---
-
-# 🔄  CI/CD Pipeline
 
 ## Overview
 

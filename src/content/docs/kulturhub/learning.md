@@ -1,10 +1,8 @@
-﻿---
+---
 title: Learning Outcomes
 description: Skills gained and lessons learned from the KulturHub project
 icon: material/school
 ---
-
-#  Learning Outcomes
 
 ## Overview
 

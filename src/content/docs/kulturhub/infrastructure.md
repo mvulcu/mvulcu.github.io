@@ -1,10 +1,8 @@
-﻿---
+---
 title: Infrastructure as Code
 description: Azure Bicep templates and deployment strategies for KulturHub
 icon: material/terraform
 ---
-
-#  Infrastructure as Code
 
 ## Overview
 

@@ -1,12 +1,8 @@
-﻿---
+---
 title: Deploying to Azure
 description: Complete guide for deploying the DevOps Portfolio to Microsoft Azure with IaC and CI/CD
 icon: material/microsoft-azure
 ---
-
-#  Deploying to Azure
-
-
 
 -    __Infrastructure as Code__
 

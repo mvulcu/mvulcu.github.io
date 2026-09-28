@@ -1,10 +1,8 @@
-﻿---
+---
 title: Cost Optimization Journey
 description: From Azure-native to near-zero cost architecture
 icon: material/currency-usd
 ---
-
-#  Cost Optimization Journey
 
 ## Overview
 

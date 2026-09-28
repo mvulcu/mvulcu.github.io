@@ -1,12 +1,8 @@
-﻿---
+---
 title: Monitoring Strategy
 description: Comprehensive monitoring setup with real-time dashboards, Azure Functions, and Application Insights
 icon: material/monitor-dashboard
 ---
-
-#  Monitoring Strategy for DevOps Portfolio
-
-
 
 -   📊  __Real-time Dashboard__
 

@@ -1,10 +1,8 @@
-﻿---
+---
 title: Microservices Architecture
 description: Event-driven microservices implementation in KulturHub
 icon: material/function-variant
 ---
-
-#  Microservices Architecture
 
 ## Overview
 

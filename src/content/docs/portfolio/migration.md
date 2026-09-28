@@ -1,12 +1,8 @@
-﻿---
+---
 title: Azure to GCP Migration Journey
 description: Complete documentation of the DevOps Portfolio migration from Microsoft Azure to Google Cloud Platform
 icon: material/cloud-sync
 ---
-
-#  Azure to GCP Migration Journey
-
-
 
 -    __Evolution Story__
 
@@ -26,7 +22,16 @@ icon: material/cloud-sync
 
 
 
-##  Executive Summary
+## Executive Summary
+
+:::tip[Executive Migration Brief]
+* **Source Platform:** Azure App Service (Basic B1 SKU, ~13 EUR/month)
+* **Target Platform:** Google Cloud Run (Europe-West3, Fully Managed Serverless)
+* **IaC Evolution:** Azure Bicep &rarr; HashiCorp Terraform modules
+* **Cost Impact:** 100% reduction in baseline cost (0 EUR/month via GCP Always-Free tier)
+* **Deployment Velocity:** 14 min manual Azure pipeline &rarr; 2.5 min automated GitHub Actions build
+:::
+
 
 This document details the successful migration of the DevOps Portfolio website from Microsoft Azure to Google Cloud Platform (GCP). The migration was executed to optimize costs, improve performance, and gain hands-on experience with GCP services.
 

@@ -1,10 +1,8 @@
-﻿---
+---
 title: Security & Network
 description: Zero Trust security implementation for KulturHub
 icon: material/shield-lock
 ---
-
-#  Security & Network
 
 ## Overview
 

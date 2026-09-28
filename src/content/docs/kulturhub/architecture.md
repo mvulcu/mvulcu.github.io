@@ -1,12 +1,19 @@
-﻿---
+---
 title: System Architecture
 description: Complete architectural overview of KulturHub platform
 icon: material/layers-triple
 ---
 
-#  System Architecture
-
 ## Overview
+
+:::note[Executive Architecture Brief]
+* **Target Runtime:** Azure App Service Linux Containers (Node.js 18 / Next.js 14 App Router)
+* **Database & Storage:** MongoDB Atlas M0 Free Tier (Multi-region replica set) + Azure Blob Storage
+* **Infrastructure as Code:** 100% Azure Bicep modules with parameter isolation
+* **Key Constraints:** Free Tier budget discipline (0 EUR/mo) with decoupled microservices and stateless JWT auth
+* **Observability:** Custom telemetry collectors with InfluxDB v2 time-series storage
+:::
+
 
 KulturHub implements a modern cloud-native architecture designed for scalability, security, and maintainability. The system follows microservices principles while maintaining cost efficiency for educational purposes.
 

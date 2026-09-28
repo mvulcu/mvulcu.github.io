@@ -1,9 +1,9 @@
-﻿---
+---
 title: DevOps & Cloud Architecture Hub
-description: Production-grade cloud infrastructure, multi-cloud IaC blueprints, and SRE post-mortems by Maria Vulcu.
+description: Production-grade cloud infrastructure, declarative multi-cloud IaC frameworks, and zero-downtime deployment pipelines by Maria Vulcu.
 template: splash
 hero:
-  tagline: Production-grade cloud infrastructure, declarative IaC frameworks, and zero-downtime multi-cloud migrations by Maria Vulcu, DevOps / Cloud Engineer.
+  tagline: Production-grade cloud architecture, declarative IaC blueprints, and zero-downtime deployment pipelines by Maria Vulcu, DevOps / Cloud Engineer.
   actions:
     - text: Explore Portfolio (GCP)
       link: /portfolio/
@@ -18,46 +18,69 @@ hero:
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, Badge } from '@astrojs/starlight/components';
 
-## Production Systems
+## Architectural Metrics & Engineering Standards
 
-<CardGrid stagger>
-  <Card title="GCP Cloud Run Portfolio" icon="rocket">
-    Serverless container architecture on Google Cloud Run with Terraform IaC, automated GitHub Actions with immutable SHA digests, and zero-cost Always Free tier operation.
-    
-    [Read Architecture Overview &rarr;](/portfolio/)
+<CardGrid>
+  <Card title="99.9% Availability" icon="rocket">
+    Containerized serverless deployment on Google Cloud Run with automated health checks, blue/green traffic splitting, and zero cold-start bottlenecks.
   </Card>
-  <Card title="KulturHub Platform (Azure)" icon="laptop">
-    Cloud-native event management system on Azure App Service with Next.js 14 App Router, MongoDB Atlas, modular Bicep IaC, and InfluxDB telemetry.
-    
-    [Read Architecture Overview &rarr;](/kulturhub/)
+  <Card title="100% Declarative IaC" icon="puzzle">
+    Zero manual cloud console clicks. 100% codified via modular Terraform and Azure Bicep with strict state isolation and automated drift checks.
   </Card>
-  <Card title="Nightingale AI (AWS)" icon="setting">
-    Containerized inference workload on AWS ECS Fargate with Application Load Balancer and modular Terraform automation.
-    
-    [View GitHub Repository &rarr;](https://github.com/mvulcu/nightingale-aiwhatif)
+  <Card title="0 EUR FinOps Discipline" icon="approve-check">
+    Full production architecture operating strictly within Google Cloud Run and Azure Always-Free tiers with zero cost runaway risk.
   </Card>
-  <Card title="Maria Guestbook (GitOps)" icon="document">
-    Declarative GitOps deployment on lightweight K3s Kubernetes with ArgoCD automated synchronization and Helm 3 charts.
-    
-    [View GitHub Repositories &rarr;](https://github.com/mvulcu)
+  <Card title="Zero-Trust Security" icon="star">
+    Zero plain-text credentials in Git or Docker image layers. Automated Secret Manager injection, managed identities, and non-root Linux containers.
   </Card>
 </CardGrid>
 
-## Core Principles
+## Flagship Systems
+
+<CardGrid stagger>
+  <Card title="GCP Cloud Run Portfolio (Live)" icon="laptop">
+    **Cloud:** Google Cloud Platform (Europe-West3)  
+    **IaC:** HashiCorp Terraform  
+    **Runtime:** Docker Multi-stage, Node.js, Next.js 14 App Router  
+    **CI/CD:** GitHub Actions with immutable SHA container digests  
+
+    [Read System Architecture &rarr;](/portfolio/)
+  </Card>
+  <Card title="KulturHub Platform (Azure PaaS)" icon="setting">
+    **Cloud:** Microsoft Azure (Germany West Central)  
+    **IaC:** Modular Azure Bicep  
+    **Runtime:** Azure App Service Linux Containers, MongoDB Atlas M0  
+    **Telemetry:** InfluxDB v2 Time-series + Custom Telemetry Collectors  
+
+    [Read Platform Architecture &rarr;](/kulturhub/)
+  </Card>
+  <Card title="Nightingale AI (AWS Cloud)" icon="open-book">
+    **Cloud:** Amazon Web Services  
+    **IaC:** Terraform Infrastructure Automation  
+    **Runtime:** AWS ECS Fargate, Application Load Balancer  
+    **Focus:** High-throughput microservice orchestration  
+
+    [View GitHub Repository &rarr;](https://github.com/mvulcu/nightingale-aiwhatif)
+  </Card>
+  <Card title="Maria Guestbook (GitOps & K8s)" icon="document">
+    **Runtime:** K3s Lightweight Kubernetes  
+    **GitOps:** ArgoCD automated Git-to-Cluster synchronization  
+    **Packaging:** Helm 3 declarative charts  
+    **Focus:** Continuous deployment and cluster self-healing  
+
+    [View GitHub Profile &rarr;](https://github.com/mvulcu)
+  </Card>
+</CardGrid>
+
+## Engineering Methodology
 
 <CardGrid>
-  <Card title="Declarative IaC" icon="puzzle">
-    100% of infrastructure is version-controlled via Terraform and Azure Bicep with strict state isolation and automated drift prevention.
+  <Card title="CI/CD Determinism" icon="random">
+    Every pull request triggers linting, multi-stage container builds, vulnerability scanning, and isolated preview environments.
   </Card>
-  <Card title="Zero-Trust & Secret Hygiene" icon="star">
-    Zero plain-text credentials in Git or Docker image layers; runtime injection via Google Secret Manager and managed identities.
-  </Card>
-  <Card title="Observability by Design" icon="information">
-    Real-time health telemetry via `/api/health`, structured JSON logging, and InfluxDB time-series metrics.
-  </Card>
-  <Card title="FinOps Discipline" icon="approve-check">
-    High availability and enterprise standards engineered with minimal cloud compute footprint and zero bill runaway risk.
+  <Card title="Telemetry & Observability" icon="information">
+    Structured JSON application logs, health probe endpoints (`/api/health`), and real-time operational status dashboards.
   </Card>
 </CardGrid>

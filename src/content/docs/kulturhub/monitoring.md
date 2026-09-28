@@ -1,10 +1,8 @@
-﻿---
+---
 title: Monitoring & Observability
 description: Comprehensive monitoring strategy for KulturHub
 icon: material/monitor-dashboard
 ---
-
-#  Monitoring & Observability
 
 ## Overview
 
