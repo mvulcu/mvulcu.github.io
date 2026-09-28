@@ -1,0 +1,63 @@
+﻿---
+title: DevOps & Cloud Architecture Hub
+description: Production-grade cloud infrastructure, multi-cloud IaC blueprints, and SRE post-mortems by Maria Vulcu.
+template: splash
+hero:
+  tagline: Production-grade cloud infrastructure, declarative IaC frameworks, and zero-downtime multi-cloud migrations by Maria Vulcu, DevOps / Cloud Engineer.
+  actions:
+    - text: Explore Portfolio (GCP)
+      link: /portfolio/
+      icon: right-arrow
+    - text: Explore KulturHub (Azure)
+      link: /kulturhub/
+      icon: right-arrow
+      variant: secondary
+    - text: Live Hub (grepme.dev)
+      link: https://grepme.dev
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Production Systems
+
+<CardGrid stagger>
+  <Card title="GCP Cloud Run Portfolio" icon="rocket">
+    Serverless container architecture on Google Cloud Run with Terraform IaC, automated GitHub Actions with immutable SHA digests, and zero-cost Always Free tier operation.
+    
+    [Read Architecture Overview &rarr;](/portfolio/)
+  </Card>
+  <Card title="KulturHub Platform (Azure)" icon="laptop">
+    Cloud-native event management system on Azure App Service with Next.js 14 App Router, MongoDB Atlas, modular Bicep IaC, and InfluxDB telemetry.
+    
+    [Read Architecture Overview &rarr;](/kulturhub/)
+  </Card>
+  <Card title="Nightingale AI (AWS)" icon="setting">
+    Containerized inference workload on AWS ECS Fargate with Application Load Balancer and modular Terraform automation.
+    
+    [View GitHub Repository &rarr;](https://github.com/mvulcu/nightingale-aiwhatif)
+  </Card>
+  <Card title="Maria Guestbook (GitOps)" icon="document">
+    Declarative GitOps deployment on lightweight K3s Kubernetes with ArgoCD automated synchronization and Helm 3 charts.
+    
+    [View GitHub Repositories &rarr;](https://github.com/mvulcu)
+  </Card>
+</CardGrid>
+
+## Core Principles
+
+<CardGrid>
+  <Card title="Declarative IaC" icon="puzzle">
+    100% of infrastructure is version-controlled via Terraform and Azure Bicep with strict state isolation and automated drift prevention.
+  </Card>
+  <Card title="Zero-Trust & Secret Hygiene" icon="star">
+    Zero plain-text credentials in Git or Docker image layers; runtime injection via Google Secret Manager and managed identities.
+  </Card>
+  <Card title="Observability by Design" icon="information">
+    Real-time health telemetry via `/api/health`, structured JSON logging, and InfluxDB time-series metrics.
+  </Card>
+  <Card title="FinOps Discipline" icon="approve-check">
+    High availability and enterprise standards engineered with minimal cloud compute footprint and zero bill runaway risk.
+  </Card>
+</CardGrid>
